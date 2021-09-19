@@ -17,6 +17,8 @@ This is a Slack application to translate Slack messages using DeepL and Google T
     - Enable Events
     - Add `reaction_added` Bot User Event
 
+### DeepL
+ - Set your DeepL Authentication Key to `DEEPL_AUTH_TOKEN`
 
 ## Execution
 ### local environment
