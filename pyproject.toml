@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "translator-for-slack"
+version = "0.1.0"
+description = ""
+authors = ["Ken Sato <ksato9700@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+slack-bolt = "^1.9.1"
+deepl = "^1.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.9.2"
+black = {version = "^21.9b0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
