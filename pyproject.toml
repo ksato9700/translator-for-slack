@@ -8,6 +8,7 @@ authors = ["Ken Sato <ksato9700@gmail.com>"]
 python = "^3.9"
 slack-bolt = "^1.9.1"
 deepl = "^1.1.1"
+google-cloud-translate = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

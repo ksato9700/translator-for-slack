@@ -20,6 +20,10 @@ This is a Slack application to translate Slack messages using DeepL and Google T
 ### DeepL
  - Set your DeepL Authentication Key to `DEEPL_AUTH_TOKEN`
 
+### Google Translation
+ - Enable Google Translate API at your project
+ - Set the path of the credential JSON file to `GOOGLE_APPLICATION_CREDENTIALS` environment variable
+
 ## Execution
 ### local environment
 ```sh

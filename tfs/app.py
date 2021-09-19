@@ -1,4 +1,5 @@
 import os
+import logging
 
 from .deepl_client import Translator as DLTranslator
 from .google_client import Translator as GGTranslator
@@ -6,17 +7,17 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_sdk.web.client import WebClient
 
-# from slack_sdk.errors import SlackApiError
+logging.basicConfig(level=logging.INFO)
 
 app = App(token=os.environ.get("SLACK_BOT_TOKEN_TRANSLATOR"))
 
 dl_translator = DLTranslator()
 gg_translator = GGTranslator()
 
-RACTION_TRANSLATOR_MAPPING = {
-    "jp": (dl_translator, "JA", "🇯🇵 "),
-    "us": (dl_translator, "EN-US", "🇺🇸 "),
-    "flag-vn": (gg_translator, "vi", "🇻🇳 "),
+RACTION_LANGUAGE_MAPPING = {
+    "jp": ("JA", "🇯🇵 "),
+    "us": ("EN-US", "🇺🇸 "),
+    "flag-vn": ("vi", "🇻🇳 "),
 }
 
 
@@ -27,7 +28,7 @@ def reactions_get(event: dict, client: WebClient, message):
         return
     reaction = event["reaction"]
     try:
-        translator, lang, flag = RACTION_TRANSLATOR_MAPPING[reaction]
+        target_lang, flag = RACTION_LANGUAGE_MAPPING[reaction]
     except KeyError:
         # print(f"reaction {reaction} is not supported")
         return
@@ -35,14 +36,23 @@ def reactions_get(event: dict, client: WebClient, message):
     item = event["item"]
     channel = item["channel"]
     replies = client.conversations_replies(channel=channel, ts=item["ts"])
-
+    # print(replies)
     message = replies["messages"][0]
     text = message["text"]
     ts = message.get("thread_ts", message["ts"])
 
-    translated = translator.translate_text(text, lang)
-    print(translated)
-    # say(flag + translated)
+    source_lang = gg_translator.detect_language(text)
+
+    if dl_translator.is_supported_source_language(
+        source_lang
+    ) and dl_translator.is_supported_target_language(target_lang):
+        translator = dl_translator
+    else:
+        translator = gg_translator
+        target_lang = target_lang[:2].lower()
+
+    translated = translator.translate_text(text, target_lang)
+    logging.info(f"{translator.__class__}: {translated}")
     client.chat_postMessage(text=flag + translated, channel=channel, thread_ts=ts)
 
 

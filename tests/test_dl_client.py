@@ -19,5 +19,12 @@ def test_get_usage(translator: Translator):
     assert charactor_detail.count < 500000
 
 
-def test_supported_languages(translator: Translator):
-    assert len(translator.get_supported_languages()) == 26
+def test_is_supported_language(translator: Translator):
+    assert translator.is_supported_source_language("EN")
+    assert translator.is_supported_source_language("en")
+    assert translator.is_supported_source_language("JA")
+    assert translator.is_supported_source_language("ja")
+    assert not translator.is_supported_source_language("vi")
+    assert translator.is_supported_target_language("EN-US")
+    assert translator.is_supported_target_language("JA")
+    assert not translator.is_supported_target_language("vi")
