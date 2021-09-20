@@ -1,0 +1,13 @@
+version: '3'
+services:
+  server:
+    image: translator-for-slack:latest
+    build: .
+    volumes:
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/creds.json
+    environment:
+      - TZ=Asia/Tokyo
+      - SLACK_BOT_TOKEN_TRANSLATOR=${SLACK_BOT_TOKEN_TRANSLATOR}
+      - SLACK_APP_TOKEN_TRANSLATOR=${SLACK_APP_TOKEN_TRANSLATOR}
+      - DEEPL_AUTH_TOKEN=${DEEPL_AUTH_TOKEN}
+      - GOOGLE_APPLICATION_CREDENTIALS=/creds.json

@@ -28,5 +28,5 @@ This is a Slack application to translate Slack messages using DeepL and Google T
 ### local environment
 ```sh
 poetry install
-poetry run python -m tfs.app
+poetry run python -m translator_for_slack.app
 ```
