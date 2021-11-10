@@ -9,7 +9,10 @@ from slack_sdk.web.client import WebClient
 
 logging.basicConfig(level=logging.INFO)
 
-app = App(token=os.environ.get("SLACK_BOT_TOKEN_TRANSLATOR"))
+app = App(
+    token=os.environ.get("SLACK_BOT_TOKEN_TRANSLATOR"),
+    signing_secret=os.environ.get("SLACK_SIGNING_SECRET_TRANSLATOR"),
+)
 
 dl_translator = DLTranslator()
 gg_translator = GGTranslator()
