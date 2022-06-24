@@ -1,11 +1,13 @@
-import os
 import logging
+import os
+
+from slack_bolt import App
+
+# from slack_bolt.adapter.socket_mode import SocketModeHandler
+from slack_sdk.web.client import WebClient
 
 from .deepl_client import Translator as DLTranslator
 from .google_client import Translator as GGTranslator
-from slack_bolt import App
-from slack_bolt.adapter.socket_mode import SocketModeHandler
-from slack_sdk.web.client import WebClient
 
 logging.basicConfig(level=logging.INFO)
 
@@ -17,10 +19,10 @@ app = App(
 dl_translator = DLTranslator()
 gg_translator = GGTranslator()
 
-RACTION_LANGUAGE_MAPPING = {
-    "jp": ("JA", "🇯🇵 "),
-    "us": ("EN-US", "🇺🇸 "),
-    "flag-vn": ("vi", "🇻🇳 "),
+REACTION_LANGUAGE_MAPPING = {
+    "to_japanese": ("JA", "🇯🇵 "),
+    "to_english": ("EN-US", "🇺🇸 "),
+    "to_vietnamese": ("vi", "🇻🇳 "),
 }
 
 
@@ -31,7 +33,7 @@ def reactions_get(event: dict, client: WebClient, message):
         return
     reaction = event["reaction"]
     try:
-        target_lang, flag = RACTION_LANGUAGE_MAPPING[reaction]
+        target_lang, flag = REACTION_LANGUAGE_MAPPING[reaction]
     except KeyError:
         # print(f"reaction {reaction} is not supported")
         return
