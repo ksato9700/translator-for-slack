@@ -26,6 +26,13 @@ REACTION_LANGUAGE_MAPPING = {
 }
 
 
+def get_reaction_count(reaction: str, reactions: list[object]):
+    for r in reactions:
+        if r["name"] == reaction:
+            return r["count"]
+    return 0
+
+
 @app.event("reaction_added")
 def reactions_get(event: dict, client: WebClient, message):
     # print(event)
@@ -43,6 +50,8 @@ def reactions_get(event: dict, client: WebClient, message):
     replies = client.conversations_replies(channel=channel, ts=item["ts"])
     # print(replies)
     message = replies["messages"][0]
+    if get_reaction_count(reaction, message["reactions"]) != 1:
+        return
     text = message["text"]
     ts = message.get("thread_ts", message["ts"])
 
