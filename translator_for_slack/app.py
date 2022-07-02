@@ -70,7 +70,7 @@ def reactions_get(event: dict, client: WebClient, message):
 
 
 if __name__ == "__main__":
-    if os.environ["TRANSLATOR_SOCKET_MODE"]:
+    if os.environ.get("TRANSLATOR_SOCKET_MODE"):
         SocketModeHandler(app, os.environ["SLACK_APP_TOKEN_TRANSLATOR"]).start()
     else:
         app.start(port=int(os.environ.get("PORT", 3000)))
