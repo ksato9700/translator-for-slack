@@ -2,8 +2,7 @@ import logging
 import os
 
 from slack_bolt import App
-
-# from slack_bolt.adapter.socket_mode import SocketModeHandler
+from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_sdk.web.client import WebClient
 
 from .deepl_client import Translator as DLTranslator
@@ -71,5 +70,7 @@ def reactions_get(event: dict, client: WebClient, message):
 
 
 if __name__ == "__main__":
-    # SocketModeHandler(app, os.environ["SLACK_APP_TOKEN_TRANSLATOR"]).start()
-    app.start(port=int(os.environ.get("PORT", 3000)))
+    if os.environ["TRANSLATOR_SOCKET_MODE"]:
+        SocketModeHandler(app, os.environ["SLACK_APP_TOKEN_TRANSLATOR"]).start()
+    else:
+        app.start(port=int(os.environ.get("PORT", 3000)))
