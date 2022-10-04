@@ -1,5 +1,5 @@
 import pytest
-from tfs.deepl_client import Translator
+from translator_for_slack.deepl_client import Translator
 
 
 @pytest.fixture()
@@ -8,8 +8,8 @@ def translator() -> Translator:
 
 
 def test_translate_text(translator: Translator):
-    assert translator.translate_text("こんにちは", "EN-US") == "Hello."
-    assert translator.translate_text("goodbye", "JA") == "さよなら"
+    assert translator.translate_text("こんにちは", "EN-US") == "Hello. - Hello."
+    assert translator.translate_text("goodbye", "JA") == "グッドバイ"
 
 
 def test_get_usage(translator: Translator):

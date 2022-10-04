@@ -1,5 +1,5 @@
 import pytest
-from tfs.google_client import Translator
+from translator_for_slack.google_client import Translator
 
 
 @pytest.fixture()
@@ -8,7 +8,7 @@ def translator() -> Translator:
 
 
 def test_translate_text(translator: Translator):
-    assert translator.translate_text("こんにちは", "en") == "Hello"
+    assert translator.translate_text("こんにちは", "en") == "hello"
     assert translator.translate_text("こんにちは", "vi") == "xin chào"
     assert translator.translate_text("goodbye", "ja") == "さようなら"
     assert translator.translate_text("goodbye", "vi") == "Tạm biệt"
