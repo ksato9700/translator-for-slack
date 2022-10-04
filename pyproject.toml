@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "translator-for-slack"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Ken Sato <ksato9700@gmail.com>"]
 

@@ -1,0 +1,11 @@
+.venv
+.vscode
+tests
+__pycache__
+schemas
+reference
+infra
+.pytest_cache
+.mypy_cache
+.git
+.DS_Store

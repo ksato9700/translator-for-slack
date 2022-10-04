@@ -13,10 +13,10 @@ def test_translate_text(translator: Translator):
 
 
 def test_get_usage(translator: Translator):
-    charactor_detail = translator.get_usage()
-    assert charactor_detail.valid
-    assert charactor_detail.limit == 500000
-    assert charactor_detail.count < 500000
+    character_detail = translator.get_usage()
+    assert character_detail.valid
+    assert character_detail.limit == 500000
+    assert character_detail.count < 500000
 
 
 def test_is_supported_language(translator: Translator):
@@ -25,6 +25,8 @@ def test_is_supported_language(translator: Translator):
     assert translator.is_supported_source_language("JA")
     assert translator.is_supported_source_language("ja")
     assert not translator.is_supported_source_language("vi")
+    assert not translator.is_supported_source_language("th")
     assert translator.is_supported_target_language("EN-US")
     assert translator.is_supported_target_language("JA")
     assert not translator.is_supported_target_language("vi")
+    assert not translator.is_supported_target_language("th")

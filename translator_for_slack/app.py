@@ -22,6 +22,7 @@ REACTION_LANGUAGE_MAPPING = {
     "to_japanese": ("JA", "🇯🇵 "),
     "to_english": ("EN-US", "🇺🇸 "),
     "to_vietnamese": ("vi", "🇻🇳 "),
+    "to_thai": ("th", "🇹🇭"),
 }
 
 
