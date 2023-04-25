@@ -1,4 +1,5 @@
 import pytest
+
 from translator_for_slack.google_client import Translator
 
 
@@ -8,11 +9,11 @@ def translator() -> Translator:
 
 
 def test_translate_text(translator: Translator):
-    assert translator.translate_text("こんにちは", "en") == "hello"
-    assert translator.translate_text("こんにちは", "vi") == "xin chào"
+    assert translator.translate_text("こんにちは", "en") == "Hello"
+    assert translator.translate_text("こんにちは", "vi") == "Xin chào"
     assert translator.translate_text("こんにちは", "th") == "สวัสดี"
     assert translator.translate_text("goodbye", "ja") == "さようなら"
-    assert translator.translate_text("goodbye", "vi") == "Tạm biệt"
+    assert translator.translate_text("goodbye", "vi") == "tạm biệt"
     assert translator.translate_text("goodbye", "th") == "ลาก่อน"
 
 

@@ -1,4 +1,5 @@
 import pytest
+
 from translator_for_slack.deepl_client import Translator
 
 
@@ -15,8 +16,8 @@ def test_translate_text(translator: Translator):
 def test_get_usage(translator: Translator):
     character_detail = translator.get_usage()
     assert character_detail.valid
-    assert character_detail.limit == 500000
-    assert character_detail.count < 500000
+    assert character_detail.limit == 2200000
+    assert character_detail.count < 2200000
 
 
 def test_is_supported_language(translator: Translator):
