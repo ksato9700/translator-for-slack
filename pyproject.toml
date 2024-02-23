@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "translator-for-slack"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["Ken Sato <ksato9700@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-slack-bolt = "^1.17.2"
-deepl = "^1.14.0"
-google-cloud-translate = "^3.11.1"
+slack-bolt = "^1.18.1"
+deepl = "^1.16.1"
+google-cloud-translate = "^3.13.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.1"

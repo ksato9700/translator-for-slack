@@ -2,8 +2,8 @@ steps:
 - name: "gcr.io/cloud-builders/docker"
   args:
   - build
-  - "--tag=gcr.io/$PROJECT_ID/translator-for-slack"
+  - "--tag=asia-northeast1-docker.pkg.dev/$PROJECT_ID/translator-for-slack/translator-for-slack"
   - .
 
 images:
-- "gcr.io/$PROJECT_ID/translator-for-slack"
+- "asia-northeast1-docker.pkg.dev/$PROJECT_ID/translator-for-slack/translator-for-slack"
