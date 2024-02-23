@@ -1,9 +1,10 @@
-FROM python:3.11-slim as builder
-WORKDIR /tfs
-COPY translator_for_slack translator_for_slack
-COPY pyproject.toml pyproject.toml
-RUN pip install .
+FROM python:3.12-slim as builder
+RUN pip install pdm
+WORKDIR /work
+COPY src pyproject.toml pdm.lock README.md /work/
+RUN pdm build
 
-FROM python:3.11-slim
-COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+FROM python:3.12-slim
+COPY --from=builder /work/dist /dist
+RUN pip install /dist/*.whl
 CMD ["python", "-m", "translator_for_slack.app"]
