@@ -10,14 +10,14 @@ def translator() -> Translator:
 
 def test_translate_text(translator: Translator):
     assert translator.translate_text("こんにちは", "EN-US") == "Hello. - Hello."
-    assert translator.translate_text("goodbye", "JA") == "グッドバイ"
+    assert translator.translate_text("goodbye", "JA") == "ではまた"
 
 
 def test_get_usage(translator: Translator):
     character_detail = translator.get_usage()
     assert character_detail.valid
-    assert character_detail.limit == 2200000
-    assert character_detail.count < 2200000
+    assert character_detail.limit == 500000
+    assert character_detail.count < 500000
 
 
 def test_is_supported_language(translator: Translator):
